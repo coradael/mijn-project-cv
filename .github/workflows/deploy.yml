@@ -3,7 +3,7 @@ name: 🚀 Deploy React App to Hostinger
 on:
   push:
     branches:
-      - build-react-cv  # Of 'master' afhankelijk van jouw repo
+      - build-react-cv  # Of 'master' afhankelijk van je setup
 
 jobs:
   build-and-deploy:

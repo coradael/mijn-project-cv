@@ -3,46 +3,43 @@ import React, { useState } from 'react';
 const ChatBox = () => {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { sender: 'bot', text: '👋 Hallo! Ik ben je CV-assistent. Waar wil je meer over weten? Typ bijvoorbeeld: "ervaring", "skills", "cv downloaden" of "opleiding".' }
+    { sender: 'bot', text: '👋 Hallo! Ik ben je CV-assistent. Waar wil je meer over weten?' }
   ]);
   const [input, setInput] = useState('');
 
+  const quickOptions = ['ervaring', 'skills', 'opleiding', 'cv downloaden'];
+
   const responses = {
-    'ervaring': 'Ik heb 5 jaar ervaring in frontend development met React en JavaScript.',
-    'skills': 'Mijn belangrijkste skills zijn: React, UX design, en teamcommunicatie.',
-    'projecten': 'Mijn favoriete project was een inclusieve webapp voor de gemeente.',
+    'ervaring': 'Ik heb 3 jaar ervaring als Microsoft Business Central developer (Application Language) en ook heb ik ervaring met React en JavaScript.',
+    'skills': 'Mijn belangrijkste skills zijn: goede focus en probleemoplossend vermogen, nieuwsgierigheid en leergierigheid, teamwork en communicatie.',
     'opleiding': 'Ik heb een HBO Informatica diploma.',
     'hallo': 'Hallo! Leuk dat je hier bent. 😊',
     'cv downloaden': (
       <span>
         Je kunt de CV van Elí hier downloaden:<br />
-        <a href="./Elí_Coronel.pdf" download="cv-Elí-Coronel.pdf">
-          <button style={{marginTop: '8px'}}>📄 Download  CV</button>
-        </a>
-      </span>
-    ),
-    'download cv': (
-      <span>
-        Je kunt de CV van Elí hier downloaden:<br />
         <a href="/Elí_Coronel.pdf" download="cv-Elí-Coronel.pdf">
-          <button style={{marginTop: '8px'}}>📄 Download  CV</button>
+          <button style={{marginTop: '8px'}}>📄 Download CV</button>
         </a>
       </span>
     ),
   };
 
-  const handleSend = () => {
-    if (!input.trim()) return;
+  const handleSend = (text = input) => {
+    if (!text.trim()) return;
 
-    const userMessage = { sender: 'user', text: input };
-    const key = input.toLowerCase();
+    const userMessage = { sender: 'user', text };
+    const key = text.toLowerCase();
     const botText =
       responses[key] ||
-      'Sorry, dat snap ik niet. Probeer "ervaring", "skills", "cv downloaden" of "opleiding".';
+      'Sorry, dat snap ik niet. Probeer een van de opties hierboven.';
     const botResponse = { sender: 'bot', text: botText };
 
     setMessages([...messages, userMessage, botResponse]);
     setInput('');
+  };
+
+  const handleQuickOption = (option) => {
+    handleSend(option);
   };
 
   return (
@@ -85,15 +82,36 @@ const ChatBox = () => {
           flexDirection: 'column'
         }}
       >
-        <h3 style={{ margin: '1rem 1rem 0.5rem 1rem' }}>
+        <h3 style={{ margin: '1rem 1rem 0.5rem 1rem', color: '#333' }}>
           <span role="img" aria-label="assistant" style={{ marginRight: '8px' }}>🤖</span>
           CV Assistent
         </h3>
+        
+        {/* Quick Options */}
+        <div style={{ margin: '0 1rem', display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+          {quickOptions.map((option) => (
+            <button
+              key={option}
+              onClick={() => handleQuickOption(option)}
+              style={{
+                padding: '0.3rem 0.6rem',
+                backgroundColor: '#f0f0f0',
+                border: '1px solid #ddd',
+                borderRadius: '15px',
+                fontSize: '0.8rem',
+                cursor: 'pointer'
+              }}
+            >
+              {option}
+            </button>
+          ))}
+        </div>
+
         <div style={{
           flex: 1,
-          maxHeight: '250px',
+          maxHeight: '200px',
           overflowY: 'auto',
-          margin: '0 1rem 1rem 1rem',
+          margin: '1rem 1rem 1rem 1rem',
           background: '#f9f9f9',
           padding: '1rem',
           borderRadius: '8px'
@@ -105,7 +123,7 @@ const ChatBox = () => {
               )}
               <span style={{
                 display: 'inline-block',
-                backgroundColor: msg.sender === 'user' ? '#007bff' : '#eee',
+                backgroundColor: msg.sender === 'user' ? '#e6eaedff' : '#eee',
                 color: msg.sender === 'user' ? '#fff' : '#000',
                 padding: '0.6rem 1rem',
                 borderRadius: '20px',
@@ -127,7 +145,7 @@ const ChatBox = () => {
             style={{ width: '100%', padding: '0.6rem', borderRadius: '6px', border: '1px solid #ccc' }}
           />
           <button
-            onClick={handleSend}
+            onClick={() => handleSend()}
             style={{
               marginTop: '0.5rem',
               width: '100%',

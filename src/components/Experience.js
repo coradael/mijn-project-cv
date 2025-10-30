@@ -4,7 +4,15 @@ const Experience = () => {
     const [open, setOpen] = useState(false);
     
   return (
-    <section>
+    <section style={{
+      background: 'white',
+      color: '#333',
+      padding: '2rem',
+      borderRadius: '15px',
+      margin: '1rem 0',
+      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
+      border: '1px solid #e0e0e0'
+    }}>
       <h2 
         style={{ cursor: 'pointer', userSelect: 'none' }}
         onClick={() => setOpen(!open)}
@@ -19,10 +27,9 @@ const Experience = () => {
         <p>2025 - Heden</p>
         <p>Profource ervaring met:</p>
         <ul>
-          <li>Oracle BI Publisher</li>
-          <li> Visual studio code</li>
-          <li>Agile methodologie voor stand-ups en springplanning</li>
-          <li>Integraties met OIC</li>
+          <li>Oracle rapportages</li>
+          <li>SQL Query's</li>
+          <li>Playwright</li>
           <li>Postman</li>
         </ul>
       </div>

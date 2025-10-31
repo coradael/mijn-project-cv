@@ -1,38 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const About = () => {
-  const [open, setOpen] = useState(false);
-
   return (
-    <section style={{
-      background: 'white',
-      color: '#333',
-      padding: '2rem',
-      borderRadius: '15px',
-      margin: '1rem 0',
-      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
-      border: '1px solid #e0e0e0'
-    }}>
-      <h2 
-        style={{ cursor: 'pointer', userSelect: 'none' }}
-        onClick={() => setOpen(!open)}
-        title="Klik om te openen/sluiten"
-      >
-        Over mij {open ? '▲' : '▼'}
-      </h2>
-      {open && (
-        <p>
-          Ik ben een enthousiaste developer met een groot doorzettingsvermogen.
-          Met mijn sterke focus en creativiteit los ik complexe issues op. Ik vind het
-          belangrijk om grote problemen simpel te maken om betere kwaliteit te
-          leveren. In alles wat ik onderneem, streef ik ernaar mijn best te doen en
-          mezelf continu te verbeteren.
-          Ik ben een rustige en vriendelijke persoon en ik vind betrokkenheid binnen
-          het team belangrijk. Natuurlijk is het ook leuk om naast werk samen leuke
-          dingen te doen, zoals een potje voetballen.
-        </p>
-      )}
-    </section>
+    <div>
+      <h2 style={{ marginTop: 0, color: '#333' }}>Over mij</h2>
+      <p>
+        Ik ben een enthousiaste developer met een groot doorzettingsvermogen.
+        Met mijn sterke focus en creativiteit los ik complexe issues op. Ik vind het
+        belangrijk om grote problemen simpel te maken om betere kwaliteit te
+        leveren. In alles wat ik onderneem, streef ik ernaar mijn best te doen en
+        mezelf continu te verbeteren.
+        Ik ben een rustige en vriendelijke persoon en ik vind betrokkenheid binnen
+        het team belangrijk. Natuurlijk is het ook leuk om naast werk samen leuke
+        dingen te doen, zoals een potje voetballen.
+      </p>
+    </div>
   );
 };
 

@@ -83,7 +83,7 @@ const ChatBox = () => {
         }}
       >
         <h3 style={{ margin: '1rem 1rem 0.5rem 1rem', color: '#333' }}>
-          <span role="img" aria-label="assistant" style={{ marginRight: '8px' }}>🤖</span>
+          <span role="img" aria-label="assistant" style={{ marginRight: '8px' }}>👨‍💻</span>
           CV Assistent
         </h3>
         
@@ -119,11 +119,11 @@ const ChatBox = () => {
           {messages.map((msg, i) => (
             <div key={i} style={{ textAlign: msg.sender === 'user' ? 'right' : 'left', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: msg.sender === 'user' ? 'flex-end' : 'flex-start' }}>
               {msg.sender === 'bot' && (
-                <span style={{ marginRight: '8px', fontSize: '1.5rem' }}>🤖</span>
+                <span style={{ marginRight: '8px', fontSize: '1.5rem' }}>👨‍💻</span>
               )}
               <span style={{
                 display: 'inline-block',
-                backgroundColor: msg.sender === 'user' ? '#e6eaedff' : '#eee',
+                backgroundColor: msg.sender === 'user' ? '#0c0d0dff' : '#eee',
                 color: msg.sender === 'user' ? '#fff' : '#000',
                 padding: '0.6rem 1rem',
                 borderRadius: '20px',

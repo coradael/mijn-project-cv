@@ -15,7 +15,6 @@ const Experience = () => {
           <li>Playwright</li>
           <li>Visual studio code</li>
           <li>Agile methodologie voor stand-ups en springplanning</li>
-          <li>Integraties met OIC</li>
           <li>Postman</li>
         </ul>
       </div>

@@ -7,39 +7,291 @@
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="CV van Elí Coronel - Software Developer"
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
+    <title>Elí Coronel - CV</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+        background-attachment: fixed;
+        min-height: 100vh;
+        font-family: 'Poppins', sans-serif;
+        overflow-x: hidden;
+      }
+      
+      /* Digital clock */
+      .digital-clock {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        background: rgba(0, 0, 0, 0.5);
+        color: #00ff41;
+        padding: 10px 15px;
+        border-radius: 8px;
+        font-family: 'Courier New', monospace;
+        font-size: 14px;
+        text-align: center;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(0, 255, 65, 0.3);
+        box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
+      }
+      
+      .clock-time {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 5px;
+        text-shadow: 0 0 10px #00ff41;
+      }
+      
+      .clock-date {
+        font-size: 12px;
+        opacity: 0.8;
+      }
+      
+      /* Animated code matrix */
+      .code-rain {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+        font-family: 'Courier New', monospace;
+        font-size: 16px;
+        color: #00ff41;
+        opacity: 0.3;
+      }
+      
+      .code-line {
+        position: absolute;
+        white-space: nowrap;
+        animation: fall 8s linear infinite;
+        text-shadow: 0 0 5px #00ff41;
+      }
+      
+      @keyframes fall {
+        0% {
+          transform: translateY(-100vh);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(100vh);
+          opacity: 0;
+        }
+      }
+      
+      /* Floating tech icons */
+      .tech-icons {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+      }
+      
+      .tech-icon {
+        position: absolute;
+        font-size: 24px;
+        opacity: 0.4;
+        animation: float-tech 20s infinite ease-in-out;
+        filter: drop-shadow(0 0 8px rgba(0, 255, 65, 0.3));
+      }
+      
+      @keyframes float-tech {
+        0%, 100% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-30px) rotate(180deg);
+        }
+      }
+      
+      /* Interactive cursor trail */
+      .cursor-trail {
+        position: fixed;
+        width: 8px;
+        height: 8px;
+        background: #00ff41;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: -1;
+        opacity: 0;
+        box-shadow: 0 0 15px #00ff41, 0 0 30px #00ff41;
+      }
+      
+      #root {
+        position: relative;
+        z-index: 1;
+      }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    
+    <!-- Digital Clock -->
+    <div class="digital-clock" id="digitalClock">
+      <div class="clock-time" id="clockTime">00:00:00</div>
+      <div class="clock-date" id="clockDate">Loading...</div>
+    </div>
+    
+    <!-- Code rain effect -->
+    <div class="code-rain" id="codeRain"></div>
+    
+    <!-- Tech icons -->
+    <div class="tech-icons" id="techIcons"></div>
+    
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+    
+    <script>
+      // Digital clock function
+      function updateClock() {
+        const now = new Date();
+        
+        // Format time
+        const time = now.toLocaleTimeString('nl-NL', {
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false
+        });
+        
+        // Format date
+        const date = now.toLocaleDateString('nl-NL', {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        });
+        
+        document.getElementById('clockTime').textContent = time;
+        document.getElementById('clockDate').textContent = date;
+      }
+      
+      // Code fragments for matrix effect
+      const codeFragments = [
+        'function createApp() {',
+        'const [state, setState] = useState();',
+        'if (condition) { return true; }',
+        'import React from "react";',
+        'npm install --save',
+        'git commit -m "feature update"',
+        'SELECT * FROM users WHERE',
+        'async function getData() {',
+        'return response.json();',
+        'console.log("Hello World");',
+        'export default Component;',
+        'const api = await fetch();',
+        '.then(data => setData(data))',
+        'docker run -p 3000:3000',
+        'yarn start',
+        'background: linear-gradient();'
+      ];
+      
+      // Tech icons (using emojis)
+      const techIcons = ['💻', '⚛️', '🔧', '📱', '🌐', '⚡', '🚀', '💡', '🔥', '⭐'];
+      
+      // Create falling code lines
+      function createCodeRain() {
+        const container = document.getElementById('codeRain');
+        
+        setInterval(() => {
+          const codeLine = document.createElement('div');
+          codeLine.classList.add('code-line');
+          codeLine.textContent = codeFragments[Math.floor(Math.random() * codeFragments.length)];
+          codeLine.style.left = Math.random() * 100 + '%';
+          codeLine.style.animationDelay = Math.random() * 2 + 's';
+          codeLine.style.animationDuration = (8 + Math.random() * 4) + 's';
+          
+          container.appendChild(codeLine);
+          
+          // Remove element after animation
+          setTimeout(() => {
+            if (codeLine.parentNode) {
+              codeLine.parentNode.removeChild(codeLine);
+            }
+          }, 12000);
+        }, 800);
+      }
+      
+      // Create floating tech icons
+      function createTechIcons() {
+        const container = document.getElementById('techIcons');
+        
+        techIcons.forEach((icon, index) => {
+          const techIcon = document.createElement('div');
+          techIcon.classList.add('tech-icon');
+          techIcon.textContent = icon;
+          techIcon.style.left = (Math.random() * 90) + '%';
+          techIcon.style.top = (Math.random() * 90) + '%';
+          techIcon.style.animationDelay = (index * 2) + 's';
+          container.appendChild(techIcon);
+        });
+      }
+      
+      // Cursor trail effect
+      function initCursorTrail() {
+        const trails = [];
+        
+        document.addEventListener('mousemove', (e) => {
+          const trail = document.createElement('div');
+          trail.classList.add('cursor-trail');
+          trail.style.left = e.clientX + 'px';
+          trail.style.top = e.clientY + 'px';
+          document.body.appendChild(trail);
+          
+          trails.push(trail);
+          
+          // Animate trail
+          setTimeout(() => {
+            trail.style.opacity = '0.8';
+            trail.style.transform = 'scale(1)';
+          }, 10);
+          
+          setTimeout(() => {
+            trail.style.opacity = '0';
+            trail.style.transform = 'scale(0)';
+          }, 400);
+          
+          setTimeout(() => {
+            if (trail.parentNode) {
+              trail.parentNode.removeChild(trail);
+            }
+          }, 600);
+          
+          // Limit number of trails
+          if (trails.length > 15) {
+            const oldTrail = trails.shift();
+            if (oldTrail && oldTrail.parentNode) {
+              oldTrail.parentNode.removeChild(oldTrail);
+            }
+          }
+        });
+      }
+      
+      // Initialize when page loads
+      document.addEventListener('DOMContentLoaded', () => {
+        updateClock();
+        setInterval(updateClock, 1000); // Update every second
+        
+        createCodeRain();
+        createTechIcons();
+        initCursorTrail();
+      });
+    </script>
   </body>
 </html>

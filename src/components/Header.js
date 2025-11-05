@@ -15,7 +15,18 @@ const Header = () => {
   };
 
   return (
-    <header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+    <header style={{ 
+      display: 'flex', 
+      alignItems: 'center', 
+      justifyContent: 'space-between',
+      background: 'white',
+      color: '#333',
+      padding: '2rem',
+      borderRadius: '15px',
+      margin: '1rem 0',
+      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
+      border: '1px solid #e0e0e0'
+    }}>
       <div>
         <h1>Elí Coronel</h1>
         <p>Software Developer</p>

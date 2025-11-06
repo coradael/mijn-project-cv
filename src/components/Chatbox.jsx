@@ -17,7 +17,7 @@ const ChatBox = () => {
     'cv downloaden': (
       <span>
         Je kunt de CV van Elí hier downloaden:<br />
-        <a href="/Elí_Coronel.pdf" download="cv-Elí-Coronel.pdf">
+        <a href="/EliCoronel.pdf" download="cv-Elí-Coronel.pdf">
           <button style={{marginTop: '8px'}}>📄 Download CV</button>
         </a>
       </span>

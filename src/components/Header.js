@@ -52,7 +52,7 @@ const Header = () => {
         </p>
       </div>
       <img 
-        src="/images/photo.jpg" 
+        src="/images/EliCoronel.jpg" 
         alt="Elí Coronel Logo" 
         className="header-logo"
         style={{

@@ -35,7 +35,7 @@ function App() {
 
   return (
     <div style={{ 
-      maxWidth: '900px', 
+      maxWidth: '1200px', 
       margin: '0 auto', 
       padding: '2rem',
       minHeight: '100vh'
@@ -62,7 +62,7 @@ function App() {
                 flex: 1,
                 padding: '1rem',
                 border: 'none',
-                background: activeTab === tab.id ? '#007bff' : 'white',
+                background: activeTab === tab.id ? '#0078D4' : 'white',
                 color: activeTab === tab.id ? 'white' : '#333',
                 cursor: 'pointer',
                 fontSize: '1rem',

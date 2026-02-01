@@ -65,7 +65,7 @@ function App() {
                 background: activeTab === tab.id ? '#0078D4' : 'white',
                 color: activeTab === tab.id ? 'white' : '#333',
                 cursor: 'pointer',
-                fontSize: '1rem',
+                fontSize: '1.25rem',
                 fontWeight: activeTab === tab.id ? 'bold' : 'normal',
                 transition: 'all 0.3s ease',
                 borderBottom: activeTab === tab.id ? '3px solid #0056b3' : '3px solid transparent'

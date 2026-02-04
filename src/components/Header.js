@@ -51,22 +51,24 @@ const Header = () => {
           {copied && <span style={{ marginLeft: '8px', color: 'green' }}>Gekopieerd!</span>}
         </p>
       </div>
-      <img 
-        src="/images/EliCoronel.jpg" 
-        alt="Elí Coronel Logo" 
-        className="header-logo"
-        style={{
-          width: '150px',
-          height: '150px',
-          objectFit: 'cover',
-          borderRadius: '50%',
-          transition: 'transform 0.3s',
-          boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-        }}
-        onMouseOver={e => e.currentTarget.style.transform = 'scale(1.07)'}
-        onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}
-        onError={e => { e.target.onerror = null; e.target.src = '/default-avatar.png'; }}
-      />
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <img 
+          src="/images/EliCoronel.jpg" 
+          alt="Elí Coronel Logo" 
+          className="header-logo"
+          style={{
+            width: '150px',
+            height: '150px',
+            objectFit: 'cover',
+            borderRadius: '50%',
+            transition: 'transform 0.3s',
+            boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+          }}
+          onMouseOver={e => e.currentTarget.style.transform = 'scale(1.07)'}
+          onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}
+          onError={e => { e.target.onerror = null; e.target.src = '/default-avatar.png'; }}
+        />
+      </div>
     </header>
   );
 };
